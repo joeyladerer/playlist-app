@@ -2,6 +2,7 @@
 npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
 
 ## Install React Router
+npm install react-router-dom@6
 
 ## Install React Redux
 
