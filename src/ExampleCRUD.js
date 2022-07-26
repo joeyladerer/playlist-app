@@ -3,6 +3,8 @@ import { addDoc, collection, onSnapshot, query, Timestamp, doc, updateDoc, delet
 import { useEffect, useState } from 'react';
 import { Button } from '@chakra-ui/react';
 
+// CRUD: Create, Read, Update, Delete
+// This component is a basic example of how to perform CRUD operations on a dataset in Firestore (only for reference)
 function ExampleCRUD() {
   const [objects, setObjects] = useState([])
 
