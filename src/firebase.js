@@ -1,14 +1,7 @@
-## Install chakra for frontend
-npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+import { initializeApp } from "firebase/app"
+import { getFirestore } from "firebase/firestore"
 
-## Install React Router
-
-## Install React Redux
-
-## Install Firebase
-npm install firebase
-
-#### Firebase Configuration (already set up)
+// Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCmPeUiMFCiiv6yMzM6dg-eSlFyVd_0QrY",
   authDomain: "playlist-app-15c32.firebaseapp.com",
@@ -18,3 +11,9 @@ const firebaseConfig = {
   appId: "1:45656067471:web:05e6b452574492ad17cffa",
   measurementId: "G-DYVRNDRFTL"
 };
+
+// Initialize Firebase and Firestore
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app)
+
+export {db}

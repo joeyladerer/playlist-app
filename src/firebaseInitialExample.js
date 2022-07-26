@@ -1,11 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
 import {db} from './firebase'
 import { addDoc, collection, onSnapshot, query, Timestamp, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Button } from '@chakra-ui/react';
 
-function App() {
+function ExampleCRUD() {
   const [objects, setObjects] = useState([])
 
   // function to add object to firestore. should be pretty standard. 
@@ -74,4 +72,4 @@ function App() {
   );
 }
 
-export default App;
+export default ExampleCRUD;
