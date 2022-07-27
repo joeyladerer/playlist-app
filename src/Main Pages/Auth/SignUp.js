@@ -1,14 +1,16 @@
 import { Box, Button, Input } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { logout, login, signup, useAuth } from '../firebase'
+import { useNavigate } from 'react-router-dom'
+import { logout, signup, useAuth } from '../../firebase'
 
 function SignUp() {
-    const currentUser = useAuth() //custom hook to retrieve current users
+    const currentUser = useAuth() //custom hook to retrieve current user object
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+
+    const navigate = useNavigate()
     
-    // AUTH ONCLICK FUNCTIONS
     const handleSignup = async () => {
         console.log(email, password)
         setLoading(true)
@@ -18,27 +20,7 @@ function SignUp() {
             alert("Error!")
         }
         setLoading(false)
-    }
-
-    const handleLogin = async () => {
-        console.log(email, password)
-        setLoading(true)
-        try {
-            await login(email, password)
-        } catch {
-            alert("Error!")
-        }
-        setLoading(false)
-    }
-
-    const handleLogout = async () => {
-        setLoading(true)
-        try {
-            await logout()
-        } catch {
-            alert("error!")
-        }
-        setLoading(false)
+        navigate('/dashboard')
     }
     
     // handle input fields
@@ -54,9 +36,7 @@ function SignUp() {
             <Input placeholder='Email' onChange={handleEmail} />
             <Input placeholder='Password' onChange={handlePassword} />
             <Button disabled={loading || currentUser} onClick={handleSignup} >Sign Up</Button>
-            <Button disabled={loading || currentUser} onClick={handleLogin}>Log In</Button>
-            <Button disabled={loading || !currentUser} onClick={handleLogout}>Log Out</Button>
-            <Box >Currently Logged In: {currentUser?.email}</Box>
+            <Button disabled={loading} onClick={() => navigate('/')} > Back to Landing Page </Button>
         </Box>
     )
 }

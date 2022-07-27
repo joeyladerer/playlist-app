@@ -14,6 +14,7 @@ function Landing () {
             <h1>Welcome!</h1>
             <Button onClick={() => routeToPath('exampleCRUD')}>Firebase Example Stuff</Button>
             <Button onClick={() => routeToPath('/signup')}>Sign up</Button>
+            <Button onClick={() => routeToPath('login')}>Log In</Button>
         </div>
     )
 }

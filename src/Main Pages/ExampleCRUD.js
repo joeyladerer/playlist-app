@@ -2,11 +2,13 @@ import {db} from '../firebase'
 import { addDoc, collection, onSnapshot, query, Timestamp, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Button } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 // CRUD: Create, Read, Update, Delete
 // This component is a basic example of how to perform CRUD operations on a dataset in Firestore (only for reference)
 function ExampleCRUD() {
   const [objects, setObjects] = useState([])
+  const navigate = useNavigate()
 
   // function to add object to firestore. should be pretty standard. 
   const handleClick = async (e) => {
@@ -70,6 +72,7 @@ function ExampleCRUD() {
       <Button onClick={() => console.log(objects)}>display</Button>
       <Button onClick={handleUpdate}>  UPDATE FIRST  </Button>
       <Button onClick={handleDelete}>  DELETE LAST  </Button>
+      <Button onClick={() => navigate('/')} > Back to Landing Page </Button>
     </div>
   );
 }
