@@ -34,7 +34,7 @@ function SignUp() {
     return (
         <Box>
             <Input placeholder='Email' onChange={handleEmail} />
-            <Input placeholder='Password' onChange={handlePassword} />
+            <Input placeholder='Password' type={'password'} onChange={handlePassword} />
             <Button disabled={loading || currentUser} onClick={handleSignup} >Sign Up</Button>
             <Button disabled={loading} onClick={() => navigate('/')} > Back to Landing Page </Button>
         </Box>
