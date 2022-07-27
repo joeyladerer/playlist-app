@@ -4,14 +4,15 @@ import { useNavigate } from 'react-router-dom'
 
 function Dashboard() {
     const navigate = useNavigate()
-    const routeToExampleCRUD = () => {
-        let path = '/examplecrud'
+    const routeToPath = (path) => {
         navigate(path)
     }
+    
     return (
         <div>
             <h1>Welcome!</h1>
-            <Button onClick={routeToExampleCRUD}>Firebase Example Stuff</Button>
+            <Button onClick={() => routeToPath('exampleCRUD')}>Firebase Example Stuff</Button>
+            <Button onClick={() => routeToPath('/signup')}>Sign up</Button>
         </div>
     )
 }
