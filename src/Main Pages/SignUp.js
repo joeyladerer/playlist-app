@@ -1,6 +1,6 @@
 import { Box, Button, Input } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { logout, login, signup, useAuth } from './firebase'
+import { logout, login, signup, useAuth } from '../firebase'
 
 function SignUp() {
     const currentUser = useAuth() //custom hook to retrieve current users

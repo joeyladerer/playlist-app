@@ -2,7 +2,7 @@ import { Button } from '@chakra-ui/react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function Dashboard() {
+function Landing () {
     // function to navigate with react router
     const navigate = useNavigate()
     const routeToPath = (path) => {
@@ -18,4 +18,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard
+export default Landing
