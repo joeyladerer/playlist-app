@@ -3,11 +3,12 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function Dashboard() {
+    // function to navigate with react router
     const navigate = useNavigate()
     const routeToPath = (path) => {
         navigate(path)
     }
-    
+    // onClick should be arrow function pointing to a path change
     return (
         <div>
             <h1>Welcome!</h1>

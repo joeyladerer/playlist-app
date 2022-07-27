@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import { logout, login, signup, useAuth } from './firebase'
 
 function SignUp() {
-    const currentUser = useAuth()
+    const currentUser = useAuth() //custom hook to retrieve current users
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
-
+    
+    // AUTH ONCLICK FUNCTIONS
     const handleSignup = async () => {
         console.log(email, password)
         setLoading(true)
@@ -39,11 +40,11 @@ function SignUp() {
         }
         setLoading(false)
     }
-
+    
+    // handle input fields
     const handleEmail = (event) => {
         setEmail(event.target.value)
     }
-
     const handlePassword = (event) => {
         setPassword(event.target.value)
     }

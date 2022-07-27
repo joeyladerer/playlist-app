@@ -19,6 +19,8 @@ const auth = getAuth()
 const db = getFirestore(app)
 
 export {db}
+
+// AUTH FUNCTIONALITY
 export function signup(email, password) {
   return createUserWithEmailAndPassword(auth, email, password)
 }
@@ -28,7 +30,6 @@ export function login(email, password) {
 export function logout() {
   return signOut(auth)
 }
-
 export function useAuth() {
   const [currentUser, setCurrentUser] = useState()
 
