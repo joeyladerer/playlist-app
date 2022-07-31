@@ -6,6 +6,8 @@ import HostDashboard from './Main Pages/HostDashboard';
 import Landing from './Main Pages/Landing';
 import LogIn from './Main Pages/Auth/LogIn';
 import SignUp from './Main Pages/Auth/SignUp';
+import CreateEvent from './Main Pages/CreateEvent';
+import EventDetails from './Main Pages/EventDetails';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path={"/signup"} element={<SignUp />} />
         <Route path={"/login"} element={<LogIn />} />
         <Route path={"/dashboard"} element={<HostDashboard />} />
+        <Route path={"/createevent"} element={<CreateEvent />} />
+        <Route path={"/event/:id"} element={<EventDetails />} />
         <Route path={"/"} element={<Landing />} />
       </Routes>
     </div>
