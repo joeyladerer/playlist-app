@@ -33,6 +33,12 @@ function HostDashboard () {
             {/* <Box>{currentUser?.eventsRef}</Box> */}
             <Button disabled={loading || !currentUser} onClick={handleCreateEvent}>Create Event</Button>
             <Button disabled={loading || !currentUser} onClick={handleLogout}>Log Out</Button>
+
+            {currentUser?.eventsRef.map((event) => {
+                return (
+                    <Button key={event.eventID} onClick={() => navigate(`/event/${event.eventID}`)}>{event.eventName}</Button>
+                )
+            })}
         </Box>
     )
 }
