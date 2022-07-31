@@ -23,6 +23,10 @@ function HostDashboard () {
     return (
         <Box>
             <Box>{currentUser?.email}</Box>
+            <Box>{currentUser?.firstname}</Box>
+            <Box>{currentUser?.lastname}</Box>
+            <Box>{currentUser?.uid}</Box>
+            <Box>{currentUser?.eventsRef}</Box>
             <Button disabled={loading || !currentUser} onClick={handleLogout}>Log Out</Button>
         </Box>
     )

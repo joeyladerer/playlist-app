@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth"
-import { doc, setDoc, Timestamp } from "firebase/firestore"
+import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "./firebase"
 
@@ -33,7 +33,20 @@ export function useAuth() {
     const [currentUser, setCurrentUser] = useState()
 
     useEffect(() => {
-        const unsub = onAuthStateChanged(auth, user => setCurrentUser(user))
+        const unsub = onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                return
+            }
+            try {
+                const docSnap = await getDoc(doc(db, 'users', user.uid))
+                if (docSnap.exists()) {
+                    setCurrentUser(docSnap.data())
+                } else {
+                    alert('User Does Not Exist')
+            }} catch(error) {
+                console.log(error)
+            }
+        })
         return unsub
     }, [])
 
