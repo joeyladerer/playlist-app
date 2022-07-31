@@ -1,7 +1,7 @@
 import { Box, Button } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { logout, useAuth } from '../firebase'
+import { logout, useAuth } from '../backend/auth'
 
 function HostDashboard () {
     const currentUser = useAuth()

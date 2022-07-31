@@ -1,7 +1,7 @@
 import { Box, Button, Input } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { signup, useAuth } from '../../firebase'
+import { signup, useAuth } from '../../backend/auth'
 
 function SignUp() {
     const currentUser = useAuth() //custom hook to retrieve current user object

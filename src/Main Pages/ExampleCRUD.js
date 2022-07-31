@@ -1,4 +1,4 @@
-import {db} from '../firebase'
+import {db} from '../backend/firebase'
 import { addDoc, collection, onSnapshot, query, Timestamp, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Button } from '@chakra-ui/react';
