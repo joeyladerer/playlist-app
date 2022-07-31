@@ -8,6 +8,7 @@ const EventDetails = () => {
 
     const navigate = useNavigate()
 
+    // custom hook to retrieve the current event from the url
     useEvent(window.location.pathname.split("/")[2])
     .then((result) => {
         setEvent(result)

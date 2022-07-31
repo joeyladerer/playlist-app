@@ -35,7 +35,7 @@ export async function createEvent(name, description, image, date, user) {
     return docSnap.data()
 }
 
-// 
+// hook returns a promise containing the current event as a result
 export async function useEvent(id) {
     const [event, setEvent] = useState()
 

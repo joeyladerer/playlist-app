@@ -6,6 +6,7 @@ import { useAuth } from '../backend/auth'
 
 function CreateEvent() {
     const currentUser = useAuth()
+
     const [loading, setLoading] = useState(false)
     const [eventName, setEventName] = useState('')
     const [eventDescription, setEventDescription] = useState('')
@@ -14,6 +15,7 @@ function CreateEvent() {
 
     const navigate = useNavigate()
 
+    // input handling
     const handleEventName = (event) => {
         setEventName(event.target.value)
     }
@@ -27,6 +29,7 @@ function CreateEvent() {
         setEventDate(event.target.value)
     }
 
+    // on submit, create the event and navigate to event details page
     const handleSubmit = async () => {
         setLoading(true);
         try {
