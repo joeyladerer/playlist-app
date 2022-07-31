@@ -19,6 +19,10 @@ function HostDashboard () {
         setLoading(false)
         navigate('/')
     }
+
+    const handleCreateEvent = () => {
+        navigate('/createevent')
+    }
     
     return (
         <Box>
@@ -26,8 +30,15 @@ function HostDashboard () {
             <Box>{currentUser?.firstname}</Box>
             <Box>{currentUser?.lastname}</Box>
             <Box>{currentUser?.uid}</Box>
-            <Box>{currentUser?.eventsRef}</Box>
+            {/* <Box>{currentUser?.eventsRef}</Box> */}
+            <Button disabled={loading || !currentUser} onClick={handleCreateEvent}>Create Event</Button>
             <Button disabled={loading || !currentUser} onClick={handleLogout}>Log Out</Button>
+
+            {currentUser?.eventsRef.map((event) => {
+                return (
+                    <Button key={event.eventID} onClick={() => navigate(`/event/${event.eventID}`)}>{event.eventName}</Button>
+                )
+            })}
         </Box>
     )
 }
