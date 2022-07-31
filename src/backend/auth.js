@@ -7,6 +7,7 @@ import { db } from "./firebase"
 const auth = getAuth()
 
 // create a user, add information to database in users object
+// may need to add more user fields in the future!
 export async function signup(email, password, firstname='deez', lastname='nuts') {
     return createUserWithEmailAndPassword(auth, email, password).then((newUser) => {
         const user = newUser.user
@@ -29,6 +30,8 @@ export function login(email, password) {
 export function logout() {
     return signOut(auth)
 }
+
+// custom hook to retrieve the current user in the host dashboard
 export function useAuth() {
     const [currentUser, setCurrentUser] = useState()
 
