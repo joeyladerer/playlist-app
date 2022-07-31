@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app"
-import { getFirestore } from "firebase/firestore"
+import { getFirestore, Timestamp } from "firebase/firestore"
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth"
 import { useEffect, useState } from "react";
+import { setDoc, doc } from "firebase/firestore";
 // Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCmPeUiMFCiiv6yMzM6dg-eSlFyVd_0QrY",
@@ -21,8 +22,19 @@ const db = getFirestore(app)
 export {db}
 
 // AUTH FUNCTIONALITY
-export function signup(email, password) {
-  return createUserWithEmailAndPassword(auth, email, password)
+export function signup(email, password, firstname='deez', lastname='nuts') {
+  return createUserWithEmailAndPassword(auth, email, password).then((newUser) => {
+    const user = newUser.user
+    console.log('uid', user)
+    setDoc(doc(db, "users", user.uid), {
+      uid: user.uid,
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      eventsRef: [],
+      dateCreated: Timestamp.now()
+    })
+  })
 }
 export function login(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
