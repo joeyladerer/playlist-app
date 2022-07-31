@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Box, Button, Input } from '@chakra-ui/react'
-import { login } from '../../firebase'
+import { login } from '../../backend/auth'
 import { useNavigate } from 'react-router-dom'
 
 function LogIn () {
