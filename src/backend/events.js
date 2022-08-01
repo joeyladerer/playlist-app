@@ -17,7 +17,7 @@ export async function createEvent(name, description, image, date, user) {
     // update the event with additional information
     await updateDoc(doc(db, "events", newEvent.id), {
         eventID: newEvent.id,
-        eventVotingURL: `/event/${newEvent.id}`
+        eventVotingURL: `/vote/${newEvent.id}`
     })
     // update the user profile to include the event
     await updateDoc(doc(db, "users", user.uid), {
