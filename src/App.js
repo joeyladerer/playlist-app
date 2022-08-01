@@ -8,6 +8,7 @@ import LogIn from './Main Pages/Auth/LogIn';
 import SignUp from './Main Pages/Auth/SignUp';
 import CreateEvent from './Main Pages/CreateEvent';
 import EventDetails from './Main Pages/EventDetails';
+import VotingPage from './Main Pages/VotingPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path={"/dashboard"} element={<HostDashboard />} />
         <Route path={"/createevent"} element={<CreateEvent />} />
         <Route path={"/event/:id"} element={<EventDetails />} />
+        <Route path={"/vote/:id"} element={<VotingPage />} />
         <Route path={"/"} element={<Landing />} />
       </Routes>
     </div>
