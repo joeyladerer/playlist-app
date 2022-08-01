@@ -12,12 +12,14 @@ export async function createEvent(name, description, image, date, user) {
         eventImage: image,
         eventDate: date,
         playlist: {},
-        eventOwner: user.uid
+        hostID: user.uid,
+        hostFirstname: user.firstname,
+        hostLastname: user.lastname
     })
     // update the event with additional information
     await updateDoc(doc(db, "events", newEvent.id), {
         eventID: newEvent.id,
-        eventVotingURL: `/vote/${newEvent.id}`
+        eventVotingURL: `localhost:3000/vote/${newEvent.id}`
     })
     // update the user profile to include the event
     await updateDoc(doc(db, "users", user.uid), {
