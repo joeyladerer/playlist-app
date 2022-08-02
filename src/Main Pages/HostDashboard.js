@@ -23,6 +23,9 @@ function HostDashboard () {
     const handleCreateEvent = () => {
         navigate('/createevent')
     }
+
+    // loading state
+    if (!currentUser) return <Box fontSize={'100px'}>Loading</Box>
     
     return (
         <Box>

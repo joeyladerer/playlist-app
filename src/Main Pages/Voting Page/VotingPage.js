@@ -34,10 +34,9 @@ function VotingPage () {
         } 
     }
 
-    console.log(playlist)
-
     // this function updates a song's vote count on the FRONTEND ONLY
     // called in SongVotingContainer components as a callback
+    // the action variable is specified to handle each specific type of change a user makes
     const updateSong = (songId, action) => {
         setPlaylist(current => 
             current.map(song => {
@@ -89,6 +88,9 @@ function VotingPage () {
     // const addSong = (song) => {
     //     setPlaylist(current => [...current, song])
     // }
+
+    // loading state
+    if (!playlist) return <Box fontSize={'100px'}>Loading</Box>
 
     return (
         <Box>

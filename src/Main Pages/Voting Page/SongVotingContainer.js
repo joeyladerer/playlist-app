@@ -8,11 +8,15 @@ function SongVotingContainer(props) {
     const [downvote, setDownvote] = useState(false)
 
     // voting handlers, calls updateSong as a callback
+    // 'action' is used to specify what the user is doing on the click (state dependent)
+    // "REMOVE_UP": removing an existing upvote
+    // "SWITCH_UP": removing a downvote and adding an upvote simultaneously
+    // "ADD_UP": adding an upvote
+    // the "DOWN" commands are the opposite of the "UP" commands
     const handleInc = () => {
         const action = upvote ? "REMOVE_UP" : downvote ? "SWITCH_UP" : "ADD_UP"
         setUpvote(!upvote)
         setDownvote(false)
-        console.log(upvote)
         props.updateSong(props.song.songId, action)
     }
     const handleDec = () => {

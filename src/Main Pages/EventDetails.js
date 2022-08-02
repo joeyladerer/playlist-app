@@ -14,6 +14,9 @@ const EventDetails = () => {
         setEvent(result)
     })
 
+    // loading state
+    if (!event) return <Box fontSize={'100px'}>Loading</Box>
+
     return (
         <Box>
             <Box>{event?.eventID}</Box>

@@ -43,6 +43,9 @@ function CreateEvent() {
         }
     }
 
+    // loading state
+    if (!currentUser) return <Box fontSize={'100px'}>Loading</Box>
+
     return (
         <Box>
             <Box>Current User: {currentUser?.email}, {currentUser?.firstname} {currentUser?.lastname}</Box>
