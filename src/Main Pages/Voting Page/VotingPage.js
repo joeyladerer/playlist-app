@@ -31,24 +31,54 @@ function VotingPage () {
             navigate('/')
         } catch(error) {
             console.log(error)
-        }
-            
+        } 
     }
+
+    console.log(playlist)
 
     // this function updates a song's vote count on the FRONTEND ONLY
     // called in SongVotingContainer components as a callback
-    const updateSong = (songId, changeValue) => {
+    const updateSong = (songId, action) => {
         setPlaylist(current => 
             current.map(song => {
                 if (song.songId === songId) {
-                    const newTotal = song.totalVotes + changeValue
-                    if (changeValue > 0) {
-                        const newUpvotes = song.numUpvotes + changeValue
-                        return {...song, numUpvotes: newUpvotes, totalVotes: newTotal}
-                    } else {
-                        const newDownvotes = song.numDownvotes - changeValue
-                        return {...song, numDownvotes: newDownvotes, totalVotes: newTotal}
+                    var upvotes = song.numUpvotes
+                    var downvotes = song.numDownvotes
+                    var totalVotes = song.totalVotes
+                    switch (action) {
+                        case "ADD_UP":
+                            upvotes += 1
+                            totalVotes += 1
+                            break;
+                        case "REMOVE_UP":
+                            upvotes -= 1
+                            totalVotes -= 1
+                            break;
+                        case "SWITCH_UP":
+                            upvotes += 1
+                            downvotes -= 1
+                            totalVotes += 2
+                            break;
+                        case "ADD_DOWN":
+                            downvotes += 1
+                            totalVotes -= 1
+                            break;
+                        case "REMOVE_DOWN":
+                            downvotes -= 1
+                            totalVotes += 1
+                            break;
+                        case "SWITCH_DOWN":
+                            downvotes += 1
+                            upvotes -= 1
+                            totalVotes -= 2
+                            break;
+                        default:
+                            break;
                     }
+                    return {...song, 
+                        numUpvotes: upvotes, 
+                        numDownvotes: downvotes, 
+                        totalVotes: totalVotes}
                 }
                 return song
             })

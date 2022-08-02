@@ -1,24 +1,33 @@
 import { Box, Button } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 
 
 // display songs in the voting page
 function SongVotingContainer(props) {
+    const [upvote, setUpvote] = useState(false)
+    const [downvote, setDownvote] = useState(false)
 
     // voting handlers, calls updateSong as a callback
     const handleInc = () => {
-        props.updateSong(props.song.songId, 1)
+        const action = upvote ? "REMOVE_UP" : downvote ? "SWITCH_UP" : "ADD_UP"
+        setUpvote(!upvote)
+        setDownvote(false)
+        console.log(upvote)
+        props.updateSong(props.song.songId, action)
     }
     const handleDec = () => {
-        props.updateSong(props.song.songId, -1)
+        const action = downvote ? "REMOVE_DOWN" : upvote ? "SWITCH_DOWN" : "ADD_DOWN"
+        setDownvote(!downvote)
+        setUpvote(false)
+        props.updateSong(props.song.songId, action)
     }
 
     return (
         <Box>
             <Box>{props.song.songName + '  '}</Box>
-            <Button onClick={handleInc}>+</Button>
+            <Button colorScheme={upvote ? 'green' : 'gray'} onClick={handleInc}>+</Button>
             <Box>{props.song.totalVotes}</Box>
-            <Button onClick={handleDec}>-</Button>
+            <Button colorScheme={downvote ? 'red' : 'gray'} onClick={handleDec}>-</Button>
         </Box>
     )
 }
