@@ -8,7 +8,7 @@ import LogIn from './Main Pages/Auth/LogIn';
 import SignUp from './Main Pages/Auth/SignUp';
 import CreateEvent from './Main Pages/CreateEvent';
 import EventDetails from './Main Pages/EventDetails';
-import VotingPage from './Main Pages/VotingPage';
+import VotingPage from './Main Pages/Voting Page/VotingPage';
 
 function App() {
   return (
