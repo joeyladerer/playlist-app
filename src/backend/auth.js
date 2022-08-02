@@ -11,7 +11,7 @@ const auth = getAuth()
 export async function signup(email, password, firstname='deez', lastname='nuts') {
     return createUserWithEmailAndPassword(auth, email, password).then((newUser) => {
         const user = newUser.user
-        console.log('uid', user)
+        console.log('user', user)
         setDoc(doc(db, "users", user.uid), {
             uid: user.uid,
             firstname: firstname,

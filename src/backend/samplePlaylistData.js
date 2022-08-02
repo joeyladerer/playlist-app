@@ -1,3 +1,5 @@
+// USING THIS DATA FOR PLAYLIST CREATION UNTIL FURTHER NOTICE
+
 export const playlist = [
     {
         songId: '1',

@@ -2,7 +2,7 @@ import { Box, Button } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updateEventPlaylist, useEvent } from '../../backend/events'
-import SongContainer from './SongContainer'
+import SongVotingContainer from './SongVotingContainer'
 
 function VotingPage () {
     const [event, setEvent] = useState()
@@ -16,11 +16,8 @@ function VotingPage () {
     .then((result) => {
         if (!event) {
             setEvent(result)
-            console.log('set event')
         }
-        console.log('running')
         if (!playlist) {
-            console.log(playlist)
             setPlaylist(result?.playlist)
         }
     })
@@ -39,10 +36,8 @@ function VotingPage () {
     }
 
     // this function updates a song's vote count on the FRONTEND ONLY
-    // backend updates will be called in handleSubmit
+    // called in SongVotingContainer components as a callback
     const updateSong = (songId, changeValue) => {
-        console.log('running, ' + songId)
-        console.log(playlist)
         setPlaylist(current => 
             current.map(song => {
                 if (song.songId === songId) {
@@ -77,7 +72,7 @@ function VotingPage () {
             <Box>{
                 playlist ? 
                 playlist.sort((a, b) => b.totalVotes - a.totalVotes)
-                .map((song) => {return (<SongContainer key={song.songId} song={song} updateSong={updateSong} />)})
+                .map((song) => {return (<SongVotingContainer key={song.songId} song={song} updateSong={updateSong} />)})
                 : null
             }
             </Box>

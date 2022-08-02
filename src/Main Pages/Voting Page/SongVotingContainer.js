@@ -1,12 +1,14 @@
 import { Box, Button } from "@chakra-ui/react";
 import React from "react";
 
-function SongContainer(props) {
 
+// display songs in the voting page
+function SongVotingContainer(props) {
+
+    // voting handlers, calls updateSong as a callback
     const handleInc = () => {
         props.updateSong(props.song.songId, 1)
     }
-
     const handleDec = () => {
         props.updateSong(props.song.songId, -1)
     }
@@ -21,4 +23,4 @@ function SongContainer(props) {
     )
 }
 
-export default SongContainer
+export default SongVotingContainer
