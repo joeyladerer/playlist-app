@@ -11,7 +11,6 @@ function LogIn () {
     const navigate = useNavigate()
 
     const handleLogin = async () => {
-        console.log(email, password)
         setLoading(true)
         try {
             await login(email, password)

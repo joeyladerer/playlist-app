@@ -32,8 +32,6 @@ export async function createEvent(name, description, image, date, playlist=[], u
     })
     // pull the new event from the database and return
     const docSnap = await getDoc(doc(db, "events", newEvent.id))
-    console.log(docSnap.data())
-    console.log(docSnap.data())
     return docSnap.data()
 }
 
@@ -52,4 +50,11 @@ export async function useEvent(id) {
     }, [])
 
     return event
+}
+
+// updates the playlist attribute after voting occurs
+export async function updateEventPlaylist(eventID, playlist) {
+    await updateDoc(doc(db, "events", eventID), {
+        playlist: playlist
+    })
 }

@@ -14,6 +14,9 @@ const EventDetails = () => {
         setEvent(result)
     })
 
+    // loading state
+    if (!event) return <Box fontSize={'100px'}>Loading</Box>
+
     return (
         <Box>
             <Box>{event?.eventID}</Box>
@@ -24,8 +27,8 @@ const EventDetails = () => {
             <Box>Hosted By {event?.hostFirstname} {event?.hostLastname}</Box>
             <Box>Songs</Box>
             <Box>{event?.playlist
-                .sort((a, b) => b.totalVotes - a.totalVotes)
-                .map((song) => song.songName + ', ' + song.totalVotes + ' votes; ')}
+                .sort((a, b) => b.netVoteCount - a.netVoteCount)
+                .map((song) => song.songName + ', ' + song.netVoteCount + ' votes; ')}
             </Box>
             <Button onClick={() => window.open(event.eventVotingURL, "_self")}>Click to Vote</Button>
             <Button onClick={() => navigate('/dashboard')}>Back to Dashboard</Button>
