@@ -4,14 +4,14 @@ import { db } from './firebase'
 
 
 // create an event object and add to user events list
-export async function createEvent(name, description, image, date, user) {
+export async function createEvent(name, description, image, date, playlist=[], user) {
     // creates the event
     const newEvent = await addDoc(collection(db, "events"), {
         eventName: name,
         eventDescription: description,
         eventImage: image,
         eventDate: date,
-        playlist: {},
+        playlist: playlist,
         hostID: user.uid,
         hostFirstname: user.firstname,
         hostLastname: user.lastname
