@@ -53,3 +53,9 @@ export async function useEvent(id) {
 
     return event
 }
+
+export async function updateEventPlaylist(eventID, playlist) {
+    await updateDoc(doc(db, "events", eventID), {
+        playlist: playlist
+    })
+}

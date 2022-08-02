@@ -1,10 +1,7 @@
-import { Box, Button, flexbox } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { Box, Button } from "@chakra-ui/react";
+import React from "react";
 
 function SongContainer(props) {
-
-    // const song = songObj.song
-    // console.log(props.song)
 
     const handleInc = () => {
         props.updateSong(props.song.songId, 1)

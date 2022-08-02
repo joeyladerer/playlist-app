@@ -1,12 +1,13 @@
 import { Box, Button } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useEvent } from '../../backend/events'
+import { updateEventPlaylist, useEvent } from '../../backend/events'
 import SongContainer from './SongContainer'
 
 function VotingPage () {
     const [event, setEvent] = useState()
     const [playlist, setPlaylist] = useState()
+    const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate()
 
@@ -24,8 +25,17 @@ function VotingPage () {
         }
     })
 
-    const handleSubmit = () => {
-        // push playlist changes to the backend
+    // update the backend and navigate to a "success" page
+    const handleSubmit = async () => {
+        setLoading(true)
+        try {
+            await updateEventPlaylist(event.eventID, playlist)
+            setLoading(false)
+            navigate('/')
+        } catch(error) {
+            console.log(error)
+        }
+            
     }
 
     // this function updates a song's vote count on the FRONTEND ONLY
@@ -71,7 +81,7 @@ function VotingPage () {
                 : null
             }
             </Box>
-            <Button onClick={handleSubmit}>Submit</Button>
+            <Button disabled={loading} onClick={handleSubmit}>Submit</Button>
             <Button onClick={() => navigate('/')}>To Landing Page</Button>
         </Box>
     )
