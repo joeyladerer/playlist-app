@@ -34,7 +34,7 @@ function LogIn () {
             <Input placeholder='Email' onChange={handleEmail} />
             <Input placeholder='Password' type={'password'} onChange={handlePassword} />
             <Button disabled={loading} onClick={handleLogin} >Log In</Button>
-            <Button disabled={loading} onClick={() => navigate('/signup')} >Don't have an account? Click Here. </Button>
+            <Button disabled={loading} onClick={() => navigate('/signup')} >Don't have an account? Sign Up Here. </Button>
             <Button disabled={loading} onClick={() => navigate('/')} > Back to Landing Page </Button>
         </Box>
     )

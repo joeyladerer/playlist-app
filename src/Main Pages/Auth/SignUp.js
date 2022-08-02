@@ -17,12 +17,12 @@ function SignUp() {
         console.log(email, password)
         setLoading(true)
         try {
-            await signup(email, password, firstname, lastname)
+            await signup(email, password, firstname, lastname)        
+            navigate('/dashboard')
         } catch {
             alert("Error!")
         }
         setLoading(false)
-        navigate('/dashboard')
     }
     
     // handle input fields
@@ -46,6 +46,7 @@ function SignUp() {
             <Input placeholder='First Name' onChange={handleFirstname} />
             <Input placeholder='Last Name' onChange={handleLastname} />
             <Button disabled={loading || currentUser} onClick={handleSignup} >Sign Up</Button>
+            <Button disabled={loading || currentUser} onClick={() => navigate('/login')} >Have an Account? Log In here. </Button>
             <Button disabled={loading} onClick={() => navigate('/')} > Back to Landing Page </Button>
         </Box>
     )
