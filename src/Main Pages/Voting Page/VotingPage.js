@@ -44,33 +44,33 @@ function VotingPage () {
                 if (song.songId === songId) {
                     var upvotes = song.numUpvotes
                     var downvotes = song.numDownvotes
-                    var totalVotes = song.totalVotes
+                    var netVoteCount = song.netVoteCount
                     switch (action) {
                         case "ADD_UP":
                             upvotes += 1
-                            totalVotes += 1
+                            netVoteCount += 1
                             break;
                         case "REMOVE_UP":
                             upvotes -= 1
-                            totalVotes -= 1
+                            netVoteCount -= 1
                             break;
                         case "SWITCH_UP":
                             upvotes += 1
                             downvotes -= 1
-                            totalVotes += 2
+                            netVoteCount += 2
                             break;
                         case "ADD_DOWN":
                             downvotes += 1
-                            totalVotes -= 1
+                            netVoteCount -= 1
                             break;
                         case "REMOVE_DOWN":
                             downvotes -= 1
-                            totalVotes += 1
+                            netVoteCount += 1
                             break;
                         case "SWITCH_DOWN":
                             downvotes += 1
                             upvotes -= 1
-                            totalVotes -= 2
+                            netVoteCount -= 2
                             break;
                         default:
                             break;
@@ -78,7 +78,7 @@ function VotingPage () {
                     return {...song, 
                         numUpvotes: upvotes, 
                         numDownvotes: downvotes, 
-                        totalVotes: totalVotes}
+                        netVoteCount: netVoteCount}
                 }
                 return song
             })
@@ -101,7 +101,7 @@ function VotingPage () {
             <Box>Hosted By {event?.hostFirstname} {event?.hostLastname}</Box>
             <Box>{
                 playlist ? 
-                playlist.sort((a, b) => b.totalVotes - a.totalVotes)
+                playlist.sort((a, b) => b.netVoteCount - a.netVoteCount)
                 .map((song) => {return (<SongVotingContainer key={song.songId} song={song} updateSong={updateSong} />)})
                 : null
             }

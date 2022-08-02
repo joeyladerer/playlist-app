@@ -26,7 +26,7 @@ function SongVotingContainer(props) {
         <Box>
             <Box>{props.song.songName + '  '}</Box>
             <Button colorScheme={upvote ? 'green' : 'gray'} onClick={handleInc}>+</Button>
-            <Box>{props.song.totalVotes}</Box>
+            <Box>{props.song.netVoteCount}</Box>
             <Button colorScheme={downvote ? 'red' : 'gray'} onClick={handleDec}>-</Button>
         </Box>
     )
