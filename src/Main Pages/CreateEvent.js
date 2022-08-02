@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../backend/auth'
 
+import { playlist } from '../backend/samplePlaylistData'
+
 function CreateEvent() {
     const currentUser = useAuth()
 
@@ -33,7 +35,7 @@ function CreateEvent() {
     const handleSubmit = async () => {
         setLoading(true);
         try {
-            const event = await createEvent(eventName, eventDescription, eventImage, eventDate, currentUser)
+            const event = await createEvent(eventName, eventDescription, eventImage, eventDate, playlist, currentUser)
             setLoading(false)
             navigate(`/event/${event.eventID}`)
         } catch(error) {
