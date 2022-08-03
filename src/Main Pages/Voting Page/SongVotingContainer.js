@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import React, { useState } from "react";
 
 
@@ -27,12 +27,12 @@ function SongVotingContainer(props) {
     }
 
     return (
-        <Box>
-            <Box>{props.song.songName + '  '}</Box>
-            <Button colorScheme={upvote ? 'green' : 'gray'} onClick={handleInc}>+</Button>
-            <Box>{props.song.netVoteCount}</Box>
+        <Flex direction={'row'} alignItems={'center'}>
+            <Box margin='20px'>{props.song.songName + '  '}</Box>
             <Button colorScheme={downvote ? 'red' : 'gray'} onClick={handleDec}>-</Button>
-        </Box>
+            <Box margin='10px'>{props.song.netVoteCount}</Box>
+            <Button colorScheme={upvote ? 'green' : 'gray'} onClick={handleInc}>+</Button>
+        </Flex>
     )
 }
 

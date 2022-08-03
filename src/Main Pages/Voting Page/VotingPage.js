@@ -1,4 +1,4 @@
-import { Box, Button } from '@chakra-ui/react'
+import { Box, Button, Flex } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updateEventPlaylist, useEvent } from '../../backend/events'
@@ -93,14 +93,14 @@ function VotingPage () {
     if (!playlist) return <Box fontSize={'100px'}>Loading</Box>
 
     return (
-        <Box>
-            <Box>VOTE HERE</Box>
+        <Flex direction={'column'} alignItems={'center'}>
             <Box>{event?.eventID}</Box>
             <Box>{event?.eventName}</Box>
             <Box>{event?.eventDescription}</Box>
             <Box>{event?.eventImage}</Box>
             <Box>{event?.eventDate}</Box>
             <Box>Hosted By {event?.hostFirstname} {event?.hostLastname}</Box>
+            <Box fontSize={'30px'}>VOTE HERE</Box>
             <Box>{
                 playlist ? 
                 playlist.sort((a, b) => b.netVoteCount - a.netVoteCount)
@@ -110,7 +110,7 @@ function VotingPage () {
             </Box>
             <Button disabled={loading} onClick={handleSubmit}>Submit</Button>
             <Button onClick={() => navigate('/')}>To Landing Page</Button>
-        </Box>
+        </Flex>
     )
 }
 
