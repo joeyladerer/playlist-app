@@ -18,7 +18,7 @@ function VotingPage () {
             setEvent(result)
         }
         if (!playlist) {
-            setPlaylist(result?.playlist)
+            setPlaylist(result?.playlist.sort((a, b) => b.netVoteCount - a.netVoteCount))
         }
     })
 
@@ -103,7 +103,7 @@ function VotingPage () {
             <Box fontSize={'30px'}>VOTE HERE</Box>
             <Box>{
                 playlist ? 
-                playlist.sort((a, b) => b.netVoteCount - a.netVoteCount)
+                playlist
                 .map((song) => {return (<SongVotingContainer key={song.songId} song={song} updateSong={updateSong} />)})
                 : null
             }

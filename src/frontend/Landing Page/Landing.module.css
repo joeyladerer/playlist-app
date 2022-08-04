@@ -43,3 +43,32 @@
     border-radius: 40px;
     font-size: 20px;
 }
+
+.BodyContainer {
+    display: flex;
+}
+
+.DescriptionContainer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3vw;
+    justify-content: center;
+    width: 50vw;
+    margin-top: 22vh;
+}
+
+.PlayNowContainer {
+    display: flex;
+    color: #C7C9F7;
+    font-size: 24px;
+    align-items: center;
+}
+
+.DescriptionText {
+    font-size: 65px;
+    font-weight: bold;
+    color: #E7C397;
+    z-index: 2;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
