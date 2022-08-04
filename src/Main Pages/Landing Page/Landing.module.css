@@ -1,0 +1,45 @@
+.MainBox {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(#150748, #C7C9F2);
+    font-family: Avenir;
+    font-style: normal;
+}
+
+.TopContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.TopComponentsContainer {
+    display: flex;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    margin-top: 2vh;
+    align-items: center;
+}
+
+.LogoText {
+    color:#C7C9F7;
+    font-size: 40px;
+}
+
+.CreateAccountButton {
+    color: white;
+    background: transparent;
+    outline-color: white;
+    border-radius: 40px;
+    margin-right: 20px;
+    font-size: 20px;
+}
+.CreateAccountButton:hover {
+    color: #E7C397;
+    background: transparent
+}
+
+.SignUpButton {
+    background: #E7C397;
+    color: white;
+    border-radius: 40px;
+    font-size: 20px;
+}

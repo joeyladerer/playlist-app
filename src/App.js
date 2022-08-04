@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import ExampleCRUD from './Main Pages/ExampleCRUD';
 import HostDashboard from './Main Pages/HostDashboard';
-import Landing from './Main Pages/Landing';
+import Landing from './Main Pages/Landing Page/Landing';
 import LogIn from './Main Pages/Auth/LogIn';
 import SignUp from './Main Pages/Auth/SignUp';
 import CreateEvent from './Main Pages/CreateEvent';
