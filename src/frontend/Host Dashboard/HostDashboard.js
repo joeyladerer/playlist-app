@@ -11,6 +11,7 @@ import style from './HostDashboard.module.css'
 function HostDashboard () {
     const currentUser = useAuth()
     const [loading, setLoading] = useState(false)
+    const [tryDelete, setTryDelete] = useState({state: false, event: undefined})
 
     const navigate = useNavigate()
 
@@ -29,8 +30,13 @@ function HostDashboard () {
         navigate('/createevent')
     }
 
-    const handleDelete = async (event) => {
+    const handleDelete = (event) => {
+        setTryDelete({state: true, event: event})
+    }
+
+    const confirmDelete = async () => {
         setLoading(true)
+        const event = tryDelete.event
         try {
             await deleteEvent(event.eventID, currentUser)
         } catch(error) {
@@ -38,6 +44,7 @@ function HostDashboard () {
             return
         }
         setLoading(false)
+        setTryDelete({state: false, event: undefined})
         // current solution, its janky. need to fix. 
         window.location.reload(false)
     }
@@ -91,6 +98,29 @@ function HostDashboard () {
                 </Button>
             </Box>
             
+            
+
+            {tryDelete.state === true ? 
+            <>
+                <Box width={'100vw'} height={'100vh'} zIndex={4} position={'fixed'} left={'0px'} top={'0px'}
+                    opacity={.4} background={'black'}
+                    _hover={{background: 'black'}}
+                    onClick={() => setTryDelete({state: false, event: undefined})}
+                />
+                <Box className={style.CancelContainer}>
+                    <Text>Are you sure you want to delete this event? This action can not be reversed. </Text>
+                    <Box className={style.CancelButtonContainer}>
+                        <Button width={'100px'}
+                        onClick={() => setTryDelete({state: false, event: undefined})}
+                        disabled={loading}
+                        >Cancel</Button>
+                        <Button background={'#C15B5B'} _hover={{background: 'red'}} width={'100px'}
+                        onClick={() => confirmDelete()} disabled={loading}
+                        >Delete</Button>
+                    </Box>
+                </Box>
+            </> :
+            null}
         </Box>
     )
 }

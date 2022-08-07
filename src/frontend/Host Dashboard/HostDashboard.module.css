@@ -71,3 +71,26 @@
     align-items: center;
     width: 10vw;
 }
+
+.CancelContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: #C7C9F2;
+    border-radius: 30px;
+    z-index: 5;
+    width: 400px;
+    height: 170px;
+    font-size: 20px;
+    text-align: center;
+    color: #150748;
+    padding: 10px;
+}
+
+.CancelButtonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 250px;
+}
