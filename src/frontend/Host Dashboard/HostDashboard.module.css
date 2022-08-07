@@ -1,0 +1,73 @@
+.MainBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-family: Avenir;
+    font-style: normal;
+}
+
+.NavBar {
+    display: flex;
+    height: 80px;
+    background: #C7C9F2;
+    color: #150748;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    width: 100vw;
+}
+
+.LogoContainer {
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+}
+
+.NavButtonContainer {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.ContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70vw;
+    margin-top: 50px;
+}
+
+.Heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 35px;
+    width: 65vw;
+    margin-bottom: 10px;
+}
+
+.MainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ListItemContainer {
+    display: flex;
+    width: 65vw;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.Icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 10vw;
+}

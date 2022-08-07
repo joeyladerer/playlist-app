@@ -27,7 +27,7 @@ export async function createEvent(name, description, image, date, playlist=[], u
             eventID: newEvent.id,
             eventName: name,
             eventDescription: description,
-            eventImage: image
+            eventDate: date
         })
     })
     // pull the new event from the database and return
