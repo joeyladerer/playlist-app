@@ -37,16 +37,16 @@ function SongCard ({
                     <Image src={image} boxSize={`${contentWidth}px`} />
 
                     <Box className={style.SongInfoContainer} 
-                        style={{"width": `${contentWidth}px`, "margin-top": `${songInfoTopMargin}px`}}>
+                        style={{"width": `${contentWidth}px`, "marginTop": `${songInfoTopMargin}px`}}>
                         <Box>
-                            <Text style={{color: 'white', "font-size": `${songNameTextSize}px`}}>{song}</Text>
-                            <Text style={{color: '#D9D9D9', "font-size": artistNameTextSize, "margin-top": '2px'}}>{artist}</Text>
+                            <Text style={{color: 'white', "fontSize": `${songNameTextSize}px`}}>{song}</Text>
+                            <Text style={{color: '#D9D9D9', "fontSize": artistNameTextSize, "marginTop": '2px'}}>{artist}</Text>
                         </Box>
                         <Image src={heart} boxSize={`${width*.06}px`} />
                     </Box>
 
                     <Box className={style.TimeBarContainer} 
-                        style={{"margin-top": `${timeBarTopMargin}px`}}>
+                        style={{"marginTop": `${timeBarTopMargin}px`}}>
                         <Box height={'1px'} width={`${contentWidth*timeBarPosition - 2}px`} background={'#C7C9F2'} />
                         <Box borderRadius={'full'} background={'#C7C9F2'} width={'4px'} height={'4px'} />
                         <Box height={'1px'} width={`${contentWidth*(1-timeBarPosition) - 2}px`} background={'white'} />
@@ -55,15 +55,15 @@ function SongCard ({
                     <Box className={style.TimeTextContainer} 
                         style={{
                             "width": `${contentWidth}px`,
-                            "font-size": `${timeTextFontSize}px`, 
-                            "margin-top": `${timeTextTopMargin}px`
+                            "fontSize": `${timeTextFontSize}px`, 
+                            "marginTop": `${timeTextTopMargin}px`
                             }}>
                         <Text>{timeElapsed}</Text>
                         <Text>{timeRemaining}</Text>
                     </Box>
 
                     <Box className={style.ControlsContainer} 
-                        style={{"width": `${contentWidth}px`, "margin-top": `${controlsTopMargin}px`}}>
+                        style={{"width": `${contentWidth}px`, "marginTop": `${controlsTopMargin}px`}}>
                         <Image src={shuffle} boxSize={`${contentWidth * .1}px`} />
                         <Image src={backwardSkip} boxSize={`${contentWidth * .1}px`} />
                         <Image src={pause} boxSize={`${contentWidth * .2}px`} />

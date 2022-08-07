@@ -37,13 +37,13 @@ function Landing () {
                     <Button 
                         color={'white'} variant={'outline'} borderRadius={'40px'} 
                         marginRight={'20px'} fontSize={'20px'}
-                        _hover={{color: '#E7C397'}} _focus={{bg: 'transparent'}}
+                        _hover={{color: '#E7C397', borderColor: '#E7C397'}} _focus={{bg: 'transparent'}}
                         onClick={() => setShowSignUp(true)}>
                             Create Account
                     </Button>
                     <Button 
                         bg={'#E7C397'} color={'white'} borderRadius={'40px'} fontSize={'20px'}
-                        _hover={{color: 'black'}}
+                        _hover={{color: 'black'}} _focus={{background: '#E7C397'}}
                         onClick={() => setShowLogIn(true)}>
                             Sign In
                     </Button>
@@ -61,7 +61,7 @@ function Landing () {
                     <Button
                         bg={'#150748'} color={'white'} borderRadius={'full'} 
                         width={'210px'} height={'50px'} fontSize={'20px'}
-                        _hover={{color: '#E7C397'}}
+                        _hover={{color: '#E7C397'}} _focus={{background: '#150748'}}
                         onClick={() => setShowSignUp(true)}
                     >Get Started</Button>
                 </Box>
