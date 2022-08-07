@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 
 import ExampleCRUD from './frontend/ExampleCRUD';
-import HostDashboard from './frontend/HostDashboard';
+import HostDashboard from './frontend/Host Dashboard/HostDashboard';
 import Landing from './frontend/Landing Page/Landing';
 import CreateEvent from './frontend/CreateEvent';
 import EventDetails from './frontend/EventDetails';
