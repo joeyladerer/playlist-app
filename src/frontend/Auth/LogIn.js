@@ -6,7 +6,7 @@ import style from './auth.module.css'
 
 import Logo from '../../assets/AuxParty_2.png'
 
-function LogIn () {
+function LogIn ({popup=false, closePopup=null}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
@@ -51,7 +51,13 @@ function LogIn () {
     }
 
     return (
-        <Box className={style.MainBox}>
+        <Box>
+            {popup ? 
+            <Box width={'100vw'} height={'100vh'} zIndex={4} position={'fixed'} left={'0px'} top={'0px'}
+            opacity={.4} background={'black'}
+            _hover={{background: 'black'}}
+            onClick={closePopup}
+            /> : null}
             <Box className={style.LoginContainer}>
 
                 <Box className={style.LogoContainer}>

@@ -6,7 +6,7 @@ import style from './auth.module.css'
 
 import Logo from '../../assets/AuxParty_2.png'
 
-function SignUp() {
+function SignUp({popup=false, closePopup=null}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [firstname, setFirstname] = useState('')
@@ -65,9 +65,16 @@ function SignUp() {
     }
 
     return (
+        <Box>
+            {popup ? 
+            <Box width={'100vw'} height={'100vh'} zIndex={4} position={'fixed'} left={'0px'} top={'0px'}
+            opacity={.4} background={'black'}
+            _hover={{background: 'black'}}
+            onClick={closePopup}
+            /> : null}
 
-        <Box className={style.MainBox}>
             <Box className={style.SignupContainer}>
+
                 <Box className={style.LogoContainer}>
                     <Avatar src={Logo} marginRight={'5px'} />
                     <Text color={'black'} fontSize={'40px'}>AuxParty</Text>
@@ -87,13 +94,12 @@ function SignUp() {
                 <Button disabled={loading || !allFieldsValid} onClick={handleSignup}
                     background={'#150748'} width={'400px'} color={'white'} marginTop={'20px'}
                     _hover={{'color': '#E7C397'}}
-                 >Create Account</Button>
+                    >Create Account</Button>
 
-                 <Box className={style.RedirectContainer}>
+                    <Box className={style.RedirectContainer}>
                     <Text marginRight={'5px'}>Already have an account?</Text>
                     <Button variant={'link'} color={'#4959D5'} disabled={loading} onClick={() => navigate('/login')} >Log In</Button>
-                 </Box>
-                 
+                    </Box>
             </Box>
         </Box>
     )
