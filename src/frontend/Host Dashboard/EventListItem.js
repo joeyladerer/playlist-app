@@ -7,7 +7,7 @@ import trash from "../../assets/Icons/delete (1).png"
 import edit from "../../assets/Icons/edit.png"
 import share from "../../assets/Icons/share-link.png"
 
-function EventListItem({event}) {
+function EventListItem({event, handleDelete}) {
 
     const navigate = useNavigate()
 
@@ -21,7 +21,6 @@ function EventListItem({event}) {
             status: 'success',
             duration: 7000,
             isClosable: true,
-            // background: '#C7C9F2'
         })
     }
 
@@ -49,7 +48,7 @@ function EventListItem({event}) {
                     <Image 
                         src={trash} cursor={'pointer'} boxSize={'30px'} 
                         _hover={{opacity: '80%'}}
-                        onClick={() => navigate(`/event/${event.eventID}`)} />
+                        onClick={() => handleDelete(event)} />
                 </Box>
             </Box>
             <Box height={'1px'} background='#C7C9F2' width={'70vw'} />

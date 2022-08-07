@@ -2,6 +2,7 @@ import { Box, Button, Image, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logout, useAuth } from '../../backend/auth'
+import { deleteEvent } from '../../backend/events'
 import Logo from '../../assets/AuxParty_2.png'
 import EventListItem from './EventListItem'
 
@@ -26,6 +27,19 @@ function HostDashboard () {
 
     const handleCreateEvent = () => {
         navigate('/createevent')
+    }
+
+    const handleDelete = async (event) => {
+        setLoading(true)
+        try {
+            await deleteEvent(event.eventID, currentUser)
+        } catch(error) {
+            console.log(error)
+            return
+        }
+        setLoading(false)
+        // current solution, its janky. need to fix. 
+        window.location.reload(false)
     }
 
     // loading state
@@ -66,7 +80,7 @@ function HostDashboard () {
                 <Box height={'1px'} background='#C7C9F2' width={'70vw'} />
                 {
                     currentUser?.eventsRef.length > 0 ?
-                    currentUser?.eventsRef.map((event) => <EventListItem key={event.eventID} event={event} />) : 
+                    currentUser?.eventsRef.map((event) => <EventListItem key={event.eventID} event={event} handleDelete={handleDelete} />) : 
                     <Text color={'#C7C9F2'} fontStyle={'italic'} marginTop={'15px'} >Looks like you don't have any events coming up!</Text>
                 }
                 <Button 

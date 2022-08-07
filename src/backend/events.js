@@ -1,4 +1,4 @@
-import { addDoc, arrayUnion, collection, doc, getDoc, updateDoc } from 'firebase/firestore'
+import { addDoc, arrayUnion, collection, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { db } from './firebase'
 
@@ -56,5 +56,12 @@ export async function useEvent(id) {
 export async function updateEventPlaylist(eventID, playlist) {
     await updateDoc(doc(db, "events", eventID), {
         playlist: playlist
+    })
+}
+
+export async function deleteEvent(eventID, user) {
+    await deleteDoc(doc(db, "events", eventID))
+    await updateDoc(doc(db, "users", user.uid), {
+        eventsRef: user.eventsRef.filter((event) => event.eventID !== eventID)
     })
 }
