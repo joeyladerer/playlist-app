@@ -1,0 +1,68 @@
+.MainBox {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(#150748, #C7C9F2);
+    font-family: Avenir;
+    font-style: normal;
+}
+
+.LoginContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 450px;
+    width: 450px;
+    background: #C7C9F2;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px;
+    z-index: 5;
+}
+
+.SignupContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 600px;
+    width: 450px;
+    background: #C7C9F2;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px;
+    z-index: 5;
+}
+
+.LogoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.LogoText {
+    color:#000000;
+    font-size: 40px;
+}
+
+.InputsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+.InputText {
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.RedirectContainer {
+    display: flex;
+    flex-direction: row;
+}

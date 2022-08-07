@@ -1,6 +1,5 @@
 import { Avatar, Box, Button, Text, Wrap, WrapItem } from '@chakra-ui/react'
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
 import Logo from '../../assets/AuxParty_2.png'
 import style from './Landing.module.css'
 import SongCard from './SongCard'
@@ -11,15 +10,21 @@ import getintoit from '../../assets/getintoit.png'
 import lessthanzero from '../../assets/lessthanzero.jpeg'
 import asitwas from '../../assets/asitwas.png'
 import comewithme from '../../assets/comewithme.png'
+import LogIn from '../Auth/LogIn'
+import SignUp from '../Auth/SignUp'
 
 
 function Landing () {
     // function to navigate with react router
-    const navigate = useNavigate()
-    const routeToPath = (path) => {
-        navigate(path)
+
+    const [showSignUp, setShowSignUp] = useState(false)
+    const [showLogIn, setShowLogIn] = useState(false)
+
+    const closePopup = () => {
+        setShowSignUp(false)
+        setShowLogIn(false)
     }
-    // onClick should be arrow function pointing to a path change
+
     return (
         <Box className={style.MainBox}>
 
@@ -33,13 +38,13 @@ function Landing () {
                         color={'white'} variant={'outline'} borderRadius={'40px'} 
                         marginRight={'20px'} fontSize={'20px'}
                         _hover={{color: '#E7C397'}} _focus={{bg: 'transparent'}}
-                        onClick={() => routeToPath('/signup')}>
+                        onClick={() => setShowSignUp(true)}>
                             Create Account
                     </Button>
                     <Button 
                         bg={'#E7C397'} color={'white'} borderRadius={'40px'} fontSize={'20px'}
                         _hover={{color: 'black'}}
-                        onClick={() => routeToPath('/login')}>
+                        onClick={() => setShowLogIn(true)}>
                             Sign In
                     </Button>
                 </Box>
@@ -57,7 +62,7 @@ function Landing () {
                         bg={'#150748'} color={'white'} borderRadius={'full'} 
                         width={'210px'} height={'50px'} fontSize={'20px'}
                         _hover={{color: '#E7C397'}}
-                        onClick={() => routeToPath('/signup')}
+                        onClick={() => setShowSignUp(true)}
                     >Get Started</Button>
                 </Box>
 
@@ -141,7 +146,15 @@ function Landing () {
                         </Box>
                     </WrapItem>
                 </Wrap>
+                
             </Box>
+            {showSignUp ? 
+            <SignUp popup={true} closePopup={closePopup} /> 
+                : null}
+            {showLogIn ? 
+            <LogIn popup={true} closePopup={closePopup} /> 
+                : null}
+            
         </Box>
     )
 }
