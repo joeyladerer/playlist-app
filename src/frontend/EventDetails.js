@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react"
+import { Box, Button, Center, CircularProgress } from "@chakra-ui/react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useEvent } from "../backend/events"
@@ -15,7 +15,8 @@ const EventDetails = () => {
     })
 
     // loading state
-    if (!event) return <Box fontSize={'100px'}>Loading</Box>
+    if (!event) return <Center><CircularProgress size='100px' marginTop='100px' 
+                    isIndeterminate color='#C7C9F2' trackColor='#E7C397' /></Center>
 
     return (
         <Box>

@@ -1,4 +1,4 @@
-import { Box, Button, Image, Text } from '@chakra-ui/react'
+import { Box, Button, Center, CircularProgress, Image, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logout, useAuth } from '../../backend/auth'
@@ -50,7 +50,8 @@ function HostDashboard () {
     }
 
     // loading state
-    if (!currentUser) return <Box fontSize={'100px'}>Loading</Box>
+    if (!currentUser) return <Center><CircularProgress size='100px' marginTop='100px' 
+                    isIndeterminate color='#C7C9F2' trackColor='#E7C397' /></Center>
     
     return (
         <Box className={style.MainBox}>
@@ -115,7 +116,7 @@ function HostDashboard () {
                         disabled={loading}
                         >Cancel</Button>
                         <Button background={'#C15B5B'} _hover={{background: 'red'}} width={'100px'}
-                        onClick={() => confirmDelete()} disabled={loading}
+                        onClick={() => confirmDelete()} disabled={loading} isLoading={loading}
                         >Delete</Button>
                     </Box>
                 </Box>

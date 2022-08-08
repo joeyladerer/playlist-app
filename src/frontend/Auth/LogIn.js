@@ -74,7 +74,7 @@ function LogIn ({popup=false, closePopup=null}) {
                 
                 <Button disabled={loading || !allFieldsValid} onClick={handleLogin}
                     background={'#150748'} width={'400px'} color={'white'} marginTop={'20px'}
-                    _hover={{'color': '#E7C397'}}
+                    _hover={{'color': '#E7C397'}} isLoading={loading}
                  >Log In</Button>
 
                  <Box className={style.RedirectContainer}>

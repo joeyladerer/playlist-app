@@ -1,4 +1,4 @@
-import { Box, Button, Input } from '@chakra-ui/react'
+import { Box, Button, Center, CircularProgress, Input } from '@chakra-ui/react'
 import { createEvent } from '../backend/events'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -44,7 +44,8 @@ function CreateEvent() {
     }
 
     // loading state
-    if (!currentUser) return <Box fontSize={'100px'}>Loading</Box>
+    if (!currentUser) return <Center><CircularProgress size='100px' marginTop='100px' 
+                    isIndeterminate color='#C7C9F2' trackColor='#E7C397' /></Center>
 
     return (
         <Box>
@@ -54,7 +55,7 @@ function CreateEvent() {
             <Input placeholder={'Event Description'} onChange={handleEventDescription} />
             <Input placeholder={'Event Image'} onChange={handleEventImage} />
             <Input placeholder={'Event Date'} onChange={handleEventDate} />
-            <Button onClick={handleSubmit} disabled={loading}>Create Event</Button>
+            <Button onClick={handleSubmit} isLoading={loading} disabled={loading}>Create Event</Button>
         </Box>
     )
 }

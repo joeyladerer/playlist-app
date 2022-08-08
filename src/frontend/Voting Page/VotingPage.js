@@ -1,4 +1,4 @@
-import { Box, Button, Flex } from '@chakra-ui/react'
+import { Box, Button, Center, CircularProgress, Flex } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updateEventPlaylist, useEvent } from '../../backend/events'
@@ -90,7 +90,8 @@ function VotingPage () {
     // }
 
     // loading state
-    if (!playlist) return <Box fontSize={'100px'}>Loading</Box>
+    if (!playlist) return <Center><CircularProgress size='100px' marginTop='100px' 
+                    isIndeterminate color='#C7C9F2' trackColor='#E7C397' /></Center>
 
     return (
         <Flex direction={'column'} alignItems={'center'}>
@@ -108,7 +109,7 @@ function VotingPage () {
                 : null
             }
             </Box>
-            <Button disabled={loading} onClick={handleSubmit}>Submit</Button>
+            <Button disabled={loading} isLoading={loading} onClick={handleSubmit}>Submit</Button>
             <Button onClick={() => navigate('/')}>To Landing Page</Button>
         </Flex>
     )

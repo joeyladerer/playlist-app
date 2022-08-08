@@ -69,7 +69,7 @@ function SignUp({popup=false, closePopup=null}) {
             {popup ? 
             <Box width={'100vw'} height={'100vh'} zIndex={4} position={'fixed'} left={'0px'} top={'0px'}
             opacity={.4} background={'black'}
-            _hover={{background: 'black'}}
+            _hover={{background: 'black'}} 
             onClick={closePopup}
             /> : null}
 
@@ -93,7 +93,7 @@ function SignUp({popup=false, closePopup=null}) {
                 
                 <Button disabled={loading || !allFieldsValid} onClick={handleSignup}
                     background={'#150748'} width={'400px'} color={'white'} marginTop={'20px'}
-                    _hover={{'color': '#E7C397'}}
+                    _hover={{'color': '#E7C397'}} isLoading={loading}
                     >Create Account</Button>
 
                     <Box className={style.RedirectContainer}>
