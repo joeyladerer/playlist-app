@@ -1,18 +1,16 @@
-import { Box, Button, Center, CircularProgress, Flex, Input, Text } from '@chakra-ui/react'
+import { Box, Button, Center, CircularProgress, Flex, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updateEventPlaylist, useEvent } from '../../backend/events'
 import SongVotingContainer from './SongVotingContainer'
-import { getToken, search } from '../../backend/spotify'
-
+import { getToken, spotifySongToPlaylistObject } from '../../backend/spotify'
+import SearchBar from '../SearchBar'
 
 function VotingPage () {
     const [event, setEvent] = useState()
     const [playlist, setPlaylist] = useState()
     const [loading, setLoading] = useState(false)
     const [token, setToken] = useState()
-    const [searchInput, setSearchInput] = useState('')
-    const [searchResults, setSearchResults] = useState([])
     const [selectedSongs, setSelectedSongs] = useState([])
 
     const navigate = useNavigate()
@@ -37,7 +35,7 @@ function VotingPage () {
     const handleSubmit = async () => {
         setLoading(true)
         try {
-            await updateEventPlaylist(event.eventID, playlist)
+            await updateEventPlaylist(event.eventID, [...playlist, ...selectedSongs])
             setLoading(false)
             navigate('/')
         } catch(error) {
@@ -45,19 +43,10 @@ function VotingPage () {
         } 
     }
 
-    const handleSearch = (event) => {
-        setSearchInput(event.target.value)
-    }
-
+    // function passed into search bar
     const handleSelectSong = (song) => {
-        setSelectedSongs([...selectedSongs, song])
+        setSelectedSongs([...selectedSongs, spotifySongToPlaylistObject(song)])
     }
-
-    useEffect(() => {
-        if (searchInput && token) {
-            search(searchInput, token).then((response) => setSearchResults(response))
-        }
-    }, [searchInput, token])
 
     // this function updates a song's vote count on the FRONTEND ONLY
     // called in SongVotingContainer components as a callback
@@ -65,7 +54,7 @@ function VotingPage () {
     const updateSong = (songId, action) => {
         setPlaylist(current => 
             current.map(song => {
-                if (song.songId === songId) {
+                if (song.song.id === songId) {
                     var upvotes = song.numUpvotes
                     var downvotes = song.numDownvotes
                     var netVoteCount = song.netVoteCount
@@ -109,12 +98,6 @@ function VotingPage () {
         )
     }
 
-    // // IMPLEMENT THIS IN THE FUTURE WHEN "ADD SONGS" FUNCTIONALITY IS NEEDED
-    // const addSong = (song) => {
-    //     setPlaylist(current => [...current, song])
-    // }
-
-    console.log(selectedSongs)
     // loading state
     if (!playlist || !token) return <Center><CircularProgress size='100px' marginTop='100px' 
                     isIndeterminate color='#C7C9F2' trackColor='#E7C397' /></Center>
@@ -133,27 +116,23 @@ function VotingPage () {
                 <Box>{
                     playlist ? 
                     playlist
-                    .map((song) => {return (<SongVotingContainer key={song.songId} song={song} updateSong={updateSong} />)})
+                    .map((song) => {return (<SongVotingContainer key={song.song.id} song={song} updateSong={updateSong} />)})
                     : null
                 }
                 </Box>
-                <Button disabled={loading} isLoading={loading} onClick={handleSubmit}>Submit</Button>
-                <Button onClick={() => navigate('/')}>To Landing Page</Button>
             </Flex>
-            <Box color='white'>
-                <Input placeholder='Search' onChange={handleSearch} />
+            <Box style={{display: 'flex', color:'white'}}>
+                <SearchBar width={'50vw'} popup={false} handleSelectSong={handleSelectSong} token={token} />
                 <Box>
-                    {searchResults.map((item) => {
+                    {selectedSongs.map((song) => {
                         return (
-                            <Button 
-                            key={item.id} color={'black'} 
-                            onClick={() => handleSelectSong(item)}>
-                                {item.name + ' - ' + item.artists[0].name}
-                            </Button>
+                            <Box key={song.song.id}>{song.song.name}</Box>
                         )
                     })}
                 </Box>
             </Box>
+            <Button disabled={loading} isLoading={loading} onClick={handleSubmit}>Submit</Button>
+            <Button onClick={() => navigate('/')}>To Landing Page</Button>
         </>
     )
 }

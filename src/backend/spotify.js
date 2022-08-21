@@ -39,3 +39,18 @@ export const search = async (input, token) => {
         console.log(error)
     }
 }
+
+// properly format songs for event playlist
+export const spotifySongToPlaylistObject = (song) => {
+    return {
+        song: {
+            id: song.id,
+            name: song.name,
+            artists: song.artists,
+            image: song.album.images[1].url
+        },
+        numUpvotes: 0,
+        numDownvotes: 0,
+        netVoteCount: 0
+    }
+}
