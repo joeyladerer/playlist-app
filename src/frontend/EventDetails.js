@@ -19,7 +19,7 @@ const EventDetails = () => {
                     isIndeterminate color='#C7C9F2' trackColor='#E7C397' /></Center>
 
     return (
-        <Box>
+        <Box color={'white'}>
             <Box>{event?.eventID}</Box>
             <Box>{event?.eventName}</Box>
             <Box>{event?.eventDescription}</Box>
@@ -29,7 +29,7 @@ const EventDetails = () => {
             <Box>Songs</Box>
             <Box>{event?.playlist
                 .sort((a, b) => b.netVoteCount - a.netVoteCount)
-                .map((song) => song.songName + ', ' + song.netVoteCount + ' votes; ')}
+                .map((song) => song.song.name + ', ' + song.netVoteCount + ' votes; ')}
             </Box>
             <Button onClick={() => window.open(event.eventVotingURL, "_self")}>Click to Vote</Button>
             <Button onClick={() => navigate('/dashboard')}>Back to Dashboard</Button>

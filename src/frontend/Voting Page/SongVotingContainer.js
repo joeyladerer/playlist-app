@@ -17,18 +17,18 @@ function SongVotingContainer(props) {
         const action = upvote ? "REMOVE_UP" : downvote ? "SWITCH_UP" : "ADD_UP"
         setUpvote(!upvote)
         setDownvote(false)
-        props.updateSong(props.song.songId, action)
+        props.updateSong(props.song.song.id, action)
     }
     const handleDec = () => {
         const action = downvote ? "REMOVE_DOWN" : upvote ? "SWITCH_DOWN" : "ADD_DOWN"
         setDownvote(!downvote)
         setUpvote(false)
-        props.updateSong(props.song.songId, action)
+        props.updateSong(props.song.song.id, action)
     }
 
     return (
         <Flex direction={'row'} alignItems={'center'}>
-            <Box margin='20px'>{props.song.songName + '  '}</Box>
+            <Box margin='20px'>{props.song.song.name + '  '}</Box>
             <Button colorScheme={downvote ? 'red' : 'gray'} onClick={handleDec}>-</Button>
             <Box margin='10px'>{props.song.netVoteCount}</Box>
             <Button colorScheme={upvote ? 'green' : 'gray'} onClick={handleInc}>+</Button>
