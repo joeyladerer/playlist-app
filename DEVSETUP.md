@@ -9,6 +9,8 @@ npm install firebase
 
 ## Install API calling tools
 npm install axios
+npm install qs
+npm install buffer
 
 #### Firebase Configuration (already set up)
 const firebaseConfig = {
