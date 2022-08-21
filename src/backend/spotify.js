@@ -25,3 +25,17 @@ export const getToken = async () => {
         console.log(error);
     }
 };
+
+export const search = async (input, token) => {
+    try {
+        const response = await axios.get(
+            `https://api.spotify.com/v1/search?q=${input.split(' ').join('%20')}&type=track,artist`, {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            })
+        return response.data.tracks.items
+    } catch(error) {
+        console.log(error)
+    }
+}

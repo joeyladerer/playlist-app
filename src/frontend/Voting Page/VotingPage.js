@@ -1,9 +1,9 @@
-import { Box, Button, Center, CircularProgress, Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Center, CircularProgress, Flex, Input, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updateEventPlaylist, useEvent } from '../../backend/events'
 import SongVotingContainer from './SongVotingContainer'
-import { getToken } from '../../backend/spotify'
+import { getToken, search } from '../../backend/spotify'
 
 
 function VotingPage () {
@@ -11,6 +11,9 @@ function VotingPage () {
     const [playlist, setPlaylist] = useState()
     const [loading, setLoading] = useState(false)
     const [token, setToken] = useState()
+    const [searchInput, setSearchInput] = useState('')
+    const [searchResults, setSearchResults] = useState([])
+    const [selectedSongs, setSelectedSongs] = useState([])
 
     const navigate = useNavigate()
 
@@ -27,7 +30,7 @@ function VotingPage () {
 
     // get spotify access token
     useEffect(() => {
-        getToken().then((result) => setToken(result))
+        getToken().then((response) => setToken(response))
     }, [])
 
     // update the backend and navigate to a "success" page
@@ -41,6 +44,20 @@ function VotingPage () {
             console.log(error)
         } 
     }
+
+    const handleSearch = (event) => {
+        setSearchInput(event.target.value)
+    }
+
+    const handleSelectSong = (song) => {
+        setSelectedSongs([...selectedSongs, song])
+    }
+
+    useEffect(() => {
+        if (searchInput && token) {
+            search(searchInput, token).then((response) => setSearchResults(response))
+        }
+    }, [searchInput, token])
 
     // this function updates a song's vote count on the FRONTEND ONLY
     // called in SongVotingContainer components as a callback
@@ -97,30 +114,47 @@ function VotingPage () {
     //     setPlaylist(current => [...current, song])
     // }
 
+    console.log(selectedSongs)
     // loading state
     if (!playlist || !token) return <Center><CircularProgress size='100px' marginTop='100px' 
                     isIndeterminate color='#C7C9F2' trackColor='#E7C397' /></Center>
 
     return (
-        <Flex direction={'column'} alignItems={'center'}>
-            <Box>{event?.eventID}</Box>
-            <Box>{event?.eventName}</Box>
-            <Box>{event?.eventDescription}</Box>
-            <Box>{event?.eventImage}</Box>
-            <Box>{event?.eventDate}</Box>
-            <Text color={'white'}>{token}</Text>
-            <Box>Hosted By {event?.hostFirstname} {event?.hostLastname}</Box>
-            <Box fontSize={'30px'}>VOTE HERE</Box>
-            <Box>{
-                playlist ? 
-                playlist
-                .map((song) => {return (<SongVotingContainer key={song.songId} song={song} updateSong={updateSong} />)})
-                : null
-            }
+        <>
+            <Flex direction={'column'} alignItems={'center'} color={'white'} >
+                <Box>{event?.eventID}</Box>
+                <Box>{event?.eventName}</Box>
+                <Box>{event?.eventDescription}</Box>
+                <Box>{event?.eventImage}</Box>
+                <Box>{event?.eventDate}</Box>
+                <Text color={'white'}>{token}</Text>
+                <Box>Hosted By {event?.hostFirstname} {event?.hostLastname}</Box>
+                <Box fontSize={'30px'}>VOTE HERE</Box>
+                <Box>{
+                    playlist ? 
+                    playlist
+                    .map((song) => {return (<SongVotingContainer key={song.songId} song={song} updateSong={updateSong} />)})
+                    : null
+                }
+                </Box>
+                <Button disabled={loading} isLoading={loading} onClick={handleSubmit}>Submit</Button>
+                <Button onClick={() => navigate('/')}>To Landing Page</Button>
+            </Flex>
+            <Box color='white'>
+                <Input placeholder='Search' onChange={handleSearch} />
+                <Box>
+                    {searchResults.map((item) => {
+                        return (
+                            <Button 
+                            key={item.id} color={'black'} 
+                            onClick={() => handleSelectSong(item)}>
+                                {item.name + ' - ' + item.artists[0].name}
+                            </Button>
+                        )
+                    })}
+                </Box>
             </Box>
-            <Button disabled={loading} isLoading={loading} onClick={handleSubmit}>Submit</Button>
-            <Button onClick={() => navigate('/')}>To Landing Page</Button>
-        </Flex>
+        </>
     )
 }
 
