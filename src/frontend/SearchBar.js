@@ -24,20 +24,20 @@ function SearchBar ({
     }
 
     return (
-    <Box color='white' width={width}>
-        <Input placeholder='Search' onChange={handleSearch} />
-        <Box>
-            {searchResults.map((item) => {
-                return (
-                    <Button 
-                    key={item.id} color={'black'} 
-                    onClick={() => handleSelectSong(item)}>
-                        {item.name + ' - ' + item.artists[0].name}
-                    </Button>
-                )
-            })}
+        <Box color='white' width={width}>
+            <Input placeholder='Search' onChange={handleSearch} />
+            <Box>
+                {searchResults.map((item) => {
+                    return (
+                        <Button 
+                        key={item.id} color={'black'} 
+                        onClick={() => handleSelectSong(item)}>
+                            {item.name + ' - ' + item.artists[0].name}
+                        </Button>
+                    )
+                })}
+            </Box>
         </Box>
-    </Box>
     )
 }
 
