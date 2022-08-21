@@ -1,13 +1,16 @@
-import { Box, Button, Center, CircularProgress, Flex } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import { Box, Button, Center, CircularProgress, Flex, Text } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updateEventPlaylist, useEvent } from '../../backend/events'
 import SongVotingContainer from './SongVotingContainer'
+import { getToken } from '../../backend/spotify'
+
 
 function VotingPage () {
     const [event, setEvent] = useState()
     const [playlist, setPlaylist] = useState()
     const [loading, setLoading] = useState(false)
+    const [token, setToken] = useState()
 
     const navigate = useNavigate()
 
@@ -21,6 +24,11 @@ function VotingPage () {
             setPlaylist(result?.playlist.sort((a, b) => b.netVoteCount - a.netVoteCount))
         }
     })
+
+    // get spotify access token
+    useEffect(() => {
+        getToken().then((result) => setToken(result))
+    }, [])
 
     // update the backend and navigate to a "success" page
     const handleSubmit = async () => {
@@ -90,7 +98,7 @@ function VotingPage () {
     // }
 
     // loading state
-    if (!playlist) return <Center><CircularProgress size='100px' marginTop='100px' 
+    if (!playlist || !token) return <Center><CircularProgress size='100px' marginTop='100px' 
                     isIndeterminate color='#C7C9F2' trackColor='#E7C397' /></Center>
 
     return (
@@ -100,6 +108,7 @@ function VotingPage () {
             <Box>{event?.eventDescription}</Box>
             <Box>{event?.eventImage}</Box>
             <Box>{event?.eventDate}</Box>
+            <Text color={'white'}>{token}</Text>
             <Box>Hosted By {event?.hostFirstname} {event?.hostLastname}</Box>
             <Box fontSize={'30px'}>VOTE HERE</Box>
             <Box>{
