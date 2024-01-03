@@ -62,7 +62,7 @@ function LogIn ({popup=false, closePopup=null}) {
 
                 <Box className={style.LogoContainer}>
                     <Avatar src={Logo} marginRight={'5px'} />
-                    <Text color={'black'} fontSize={'40px'}>AuxParty</Text>
+                    <Text color={'black'} fontSize={'40px'}>crowdify</Text>
                 </Box>
 
                 <Box className={style.InputsContainer}>

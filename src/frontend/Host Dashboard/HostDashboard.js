@@ -19,8 +19,8 @@ function HostDashboard () {
         setLoading(true)
         try {
             await logout()
-        } catch {
-            alert("error!")
+        } catch (e) {
+            alert("error!", e)
         }
         setLoading(false)
         navigate('/')
