@@ -58,7 +58,7 @@ function HostDashboard () {
             <Box className={style.NavBar}>
                 <Box className={style.LogoContainer}>
                     <Image src={Logo} boxSize={'50px'} />
-                    <Text marginLeft={'5px'}>AuxParty</Text>
+                    <Text marginLeft={'5px'}>crowdify</Text>
                 </Box>
                 <Box className={style.NavButtonContainer}>
                     <Text marginRight={'1vw'}>Hello, {currentUser?.firstname}</Text>

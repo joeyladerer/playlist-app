@@ -31,7 +31,7 @@ function Landing () {
             <Box className={style.TopContainer}>
                 <Box className={style.TopComponentsContainer}>
                     <Avatar src={Logo} marginRight={'5px'} />
-                    <Text color={'#C7C9F7'} fontSize={'40px'}>AuxParty</Text>
+                    <Text color={'#C7C9F7'} fontSize={'40px'}>crowdify</Text>
                 </Box>
                 <Box className={style.TopComponentsContainer}>
                     <Button 

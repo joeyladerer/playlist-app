@@ -47,10 +47,47 @@ export const spotifySongToPlaylistObject = (song) => {
             id: song.id,
             name: song.name,
             artists: song.artists,
-            image: song.album.images[1].url
+            image: song.album.images[1].url,
+            uri: song.uri
         },
         numUpvotes: 0,
         numDownvotes: 0,
         netVoteCount: 0
     }
+}
+
+export const exportPlaylist = async (playlist, token, userID, playlistName, playlistDescription) => {
+    // create the playlist
+    const body = qs.stringify({
+        name: playlistName,
+        public: true,
+        collaborative: false,
+        description: playlistDescription
+    })
+    const spotifyPlaylist = await axios.post('', body, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
+    // now add all the tracks
+    const newPlaylistId = spotifyPlaylist.id
+    var tracks = ''
+    var first = true
+    for (const song in playlist) {
+        if (first) {
+            tracks += song.song.uri
+            first = false
+        } else {
+            tracks += ',' + song.song.uri
+        }
+    }
+    console.log(tracks)
+    const requestURL = `https://api.spotify.com/playlists/${newPlaylistId}/tracks?uris=${tracks}`
+
+    await axios.post(requestURL, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
+    return
 }
