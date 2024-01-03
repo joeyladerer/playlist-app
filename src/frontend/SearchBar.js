@@ -22,6 +22,7 @@ function SearchBar ({
     const handleSearch = (event) => {
         setSearchInput(event.target.value)
     }
+    console.log(searchResults)
 
     return (
         <Box color='white' width={width}>
