@@ -51,7 +51,7 @@ function EventListItem({event, handleDelete}) {
                         onClick={() => handleDelete(event)} />
                 </Box>
             </Box>
-            <Box height={'1px'} background='#C7C9F2' width={'70vw'} />
+            <Box height={'1px'} background='#C7C9F2' width={'85vw'} />
         </Box>
     )
 }

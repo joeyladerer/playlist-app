@@ -85,7 +85,7 @@ function HostDashboard () {
                     onClick={handleCreateEvent} disabled={loading}
                     >+ Create Event</Button>
                 </Box>
-                <Box height={'1px'} background='#C7C9F2' width={'70vw'} />
+                <Box height={'1px'} background='#C7C9F2' width={'85vw'} />
                 {
                     currentUser?.eventsRef.length > 0 ?
                     currentUser?.eventsRef.map((event) => <EventListItem key={event.eventID} event={event} handleDelete={handleDelete} />) : 

@@ -57,7 +57,7 @@ function Landing () {
                         <Box marginLeft={'1vw'} width={'15vw'} height={'1px'} background={'white'}/>
                         <Box width={'10px'} height={'10px'} borderWidth={'1px'} borderColor={'white'} borderRadius={'full'} />
                     </Box>
-                    <Text className={style.DescriptionText}>Collaborate and blend your music taste blah blah blah</Text>
+                    <Text className={style.DescriptionText}>Who's on Aux? Democratize your playlists.</Text>
                     <Button
                         bg={'#150748'} color={'white'} borderRadius={'full'} 
                         width={'210px'} height={'50px'} fontSize={'20px'}
